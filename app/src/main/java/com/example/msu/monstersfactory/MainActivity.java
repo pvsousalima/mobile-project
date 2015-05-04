@@ -57,6 +57,7 @@ public class MainActivity extends Activity {
 
         if (checkFirstLaunch()==true){
             setContentView(R.layout.activity_main);
+            System.out.println("Railan");
 
         }else{
             setContentView(R.layout.second);
