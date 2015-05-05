@@ -3,11 +3,10 @@ package com.example.msu.monstersfactory;
 import android.app.Activity;
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
-import android.os.AsyncTask;
+import android.graphics.Color;
 import android.os.Bundle;
-import android.util.Log;
+import android.os.Handler;
+import android.os.Looper;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -16,9 +15,6 @@ import android.widget.ImageView;
 import android.widget.Toast;
 
 import com.squareup.picasso.Picasso;
-
-import java.io.InputStream;
-import java.net.URL;
 
 
 public class MainActivity extends Activity {
@@ -44,10 +40,9 @@ public class MainActivity extends Activity {
             return true;
         } else {
 
-            // Checks the second time launch
-            //the app is being launched for second time, do something
 
-            setContentView(R.layout.second);
+
+            setContentView(R.layout.form_activity);
 
             // first time task
             Toast t = Toast.makeText(getApplicationContext(), "Second time", Toast.LENGTH_LONG);
@@ -63,16 +58,25 @@ public class MainActivity extends Activity {
 
         setContentView(R.layout.activity_main);
 
+        getWindow().getDecorView().setBackgroundColor(Color.BLACK);
+
         //Get SharedPreferences
         settings = getSharedPreferences(PREFS_NAME, 0);
 
         //Gets ImageView object
         imageView = (ImageView) findViewById(R.id.image);
 
-        // Loads image from the Internet
-        Picasso.with(getApplicationContext())
-        .load("https://scontent.xx.fbcdn.net/hphotos-xfp1/t31.0-8/1798924_795706623828627_1556304660425544635_o.png")
-        .into(imageView);
+
+        Handler uiHandler = new Handler(Looper.getMainLooper());
+        uiHandler.post(new Runnable(){
+            @Override
+            public void run() {
+                Picasso.with(getApplicationContext())
+                        .load("https://scontent.xx.fbcdn.net/hphotos-xfp1/t31.0-8/1798924_795706623828627_1556304660425544635_o.png")
+                        .into(imageView);
+            }
+        });
+
 
         Toast t = Toast.makeText(getApplicationContext(), "Load image", Toast.LENGTH_SHORT);
         t.show();

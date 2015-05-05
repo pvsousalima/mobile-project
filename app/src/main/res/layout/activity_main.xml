@@ -16,7 +16,7 @@
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="CONTINUE"
+        android:text="CONTINUE GROWING"
         android:id="@+id/button_continue"
         android:layout_alignParentBottom="true"
         android:layout_alignParentEnd="true"
@@ -25,7 +25,7 @@
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="NEW"
+        android:text="NEW MONSTER"
         android:id="@+id/button_new"
         android:layout_above="@+id/button_continue"
         android:layout_alignEnd="@+id/button_continue"
