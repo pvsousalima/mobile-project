@@ -61,6 +61,16 @@ public class MainActivity extends Activity {
         getWindow().getDecorView().setBackgroundColor(Color.BLACK);
 
         System.out.print("Teste");
+        System.out.print("Teste");
+        System.out.print("Teste");
+        System.out.print("Teste");
+        System.out.print("Teste");
+        System.out.print("Teste");
+        System.out.print("Teste");
+        System.out.print("Teste");
+        System.out.print("Teste");
+
+
 
         //Get SharedPreferences
         settings = getSharedPreferences(PREFS_NAME, 0);
