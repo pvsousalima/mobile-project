@@ -78,7 +78,7 @@ public class MainActivity extends Activity {
         });
 
 
-        Toast t = Toast.makeText(getApplicationContext(), "Load image", Toast.LENGTH_SHORT);
+        Toast t = Toast.makeText(getApplicationContext(), "Loading image", Toast.LENGTH_SHORT);
         t.show();
 
 
