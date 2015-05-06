@@ -3,6 +3,7 @@ package com.example.msu.monstersfactory;
 import android.app.Activity;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.database.sqlite.SQLiteDatabase;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.os.Handler;
@@ -24,14 +25,22 @@ public class MainActivity extends Activity {
     final String PREFS_NAME = "MyPrefsFile";
     SharedPreferences settings;
 
+    // Imagem de inicio
     ImageView imageView;
+
+
+    Button button_new;
+
+    // SQLITE
+    private SQLiteDatabase db;
+
 
     public boolean checkFirstLaunch(){
         if (settings.getBoolean("my_first_time", true)) {
 
-            // first time task
-            Toast t = Toast.makeText(getApplicationContext(), "First time", Toast.LENGTH_LONG);
-            t.show();
+            //Creates DataBase
+            DBService dbService = new DBService(this);
+            db = dbService.getDatabase();
 
             // record the fact that the app has been started at least once
             settings.edit().putBoolean("my_first_time", false).apply();
@@ -39,7 +48,6 @@ public class MainActivity extends Activity {
 
             return true;
         } else {
-
 
             setContentView(R.layout.activity_forms);
 
@@ -55,11 +63,13 @@ public class MainActivity extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        //Makes the application turn to full mode
-        getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
 
         // Set the contentView for the app
         setContentView(R.layout.activity_main);
+
+
+        //Makes the application turn to full mode
+        getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
 
         // Turns background black
         getWindow().getDecorView().setBackgroundColor(Color.BLACK);
@@ -69,6 +79,12 @@ public class MainActivity extends Activity {
 
         //Gets ImageView object
         imageView = (ImageView) findViewById(R.id.image);
+
+
+        if (checkFirstLaunch() == true){
+            Toast t = Toast.makeText(getApplicationContext(), "First", Toast.LENGTH_LONG);
+            t.show();
+        }
 
         // Handler to load the image from the internet
         Handler uiHandler = new Handler(Looper.getMainLooper());
@@ -82,7 +98,7 @@ public class MainActivity extends Activity {
         });
 
         // Button for the new monster
-        Button button_new = (Button) findViewById(R.id.button_new);
+         button_new = (Button) findViewById(R.id.button_new);
 
         // Events for new monster calling the form activity
         button_new.setOnClickListener(new View.OnClickListener() {
