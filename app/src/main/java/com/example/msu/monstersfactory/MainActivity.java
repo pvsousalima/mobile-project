@@ -10,6 +10,7 @@ import android.os.Looper;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.Toast;
@@ -22,7 +23,6 @@ public class MainActivity extends Activity {
     //SharedPreferences
     final String PREFS_NAME = "MyPrefsFile";
     SharedPreferences settings;
-
 
     ImageView imageView;
 
@@ -41,7 +41,6 @@ public class MainActivity extends Activity {
         } else {
 
 
-
             setContentView(R.layout.form_activity);
 
             // first time task
@@ -56,21 +55,14 @@ public class MainActivity extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
+        //Makes the application turn to full mode
+        getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
+
+        // Set the contentView for the app
         setContentView(R.layout.activity_main);
 
+        // Turns background black
         getWindow().getDecorView().setBackgroundColor(Color.BLACK);
-
-        System.out.print("Teste");
-        System.out.print("Teste");
-        System.out.print("Teste");
-        System.out.print("Teste");
-        System.out.print("Teste");
-        System.out.print("Teste");
-        System.out.print("Teste");
-        System.out.print("Teste");
-        System.out.print("Teste");
-
-
 
         //Get SharedPreferences
         settings = getSharedPreferences(PREFS_NAME, 0);
@@ -78,9 +70,9 @@ public class MainActivity extends Activity {
         //Gets ImageView object
         imageView = (ImageView) findViewById(R.id.image);
 
-
+        // Handler to load the image from the internet
         Handler uiHandler = new Handler(Looper.getMainLooper());
-        uiHandler.post(new Runnable(){
+        uiHandler.post(new Runnable() {
             @Override
             public void run() {
                 Picasso.with(getApplicationContext())
@@ -89,25 +81,21 @@ public class MainActivity extends Activity {
             }
         });
 
-
-        Toast t = Toast.makeText(getApplicationContext(), "Loading image", Toast.LENGTH_SHORT);
-        t.show();
-
-
+        // Button for the new monster
         Button button_new = (Button) findViewById(R.id.button_new);
 
-
+        // Events for new monster calling the form activity
         button_new.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
+                // Creates new intent
                 Intent i  = new Intent(getApplicationContext(), FormActivity.class);
 
+                //Starts new activity
                 startActivity(i);
             }
         });
-
-
     }
 
 
