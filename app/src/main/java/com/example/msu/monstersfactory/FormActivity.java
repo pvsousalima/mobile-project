@@ -1,73 +1,41 @@
 package com.example.msu.monstersfactory;
 
 import android.app.Activity;
-import android.graphics.Color;
+import android.content.Intent;
 import android.os.Bundle;
-import android.os.Handler;
-import android.os.Looper;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.MotionEvent;
 import android.view.View;
-import android.view.WindowManager;
+import android.widget.Button;
 import android.widget.EditText;
-import android.widget.ImageView;
-
-import com.squareup.picasso.Picasso;
 
 /**
  * Created by pvsousalima on 5/4/15.
  */
 public class FormActivity extends Activity{
 
-    ImageView imageView;
-    ImageView icone_height;
-
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        setContentView(R.layout.form_activity);
+        // SetContentView to form activity
+        setContentView(R.layout.activity_forms);
 
-        // Setbackground color?
-        //getWindow().getDecorView().setBackgroundColor(Color.DKGRAY);
-
+        // Editexts
         final EditText tvname = (EditText) findViewById(R.id.tvname);
         final EditText tvheight = (EditText) findViewById(R.id.tvheight);
         final EditText tvweight = (EditText) findViewById(R.id.tvweight);
         final EditText tvage = (EditText) findViewById(R.id.tvage);
 
-        imageView = (ImageView) findViewById(R.id.imageView);
-        icone_height = (ImageView) findViewById(R.id.imageView2);
 
 
-        Handler uiHandler = new Handler(Looper.getMainLooper());
-        uiHandler.post(new Runnable() {
-            @Override
-            public void run() {
-                Picasso.with(getApplicationContext())
-                        .load("http://www.muscleclubapparel.com/wp-content/uploads/2013/07/BigBiceps_2560x1440.jpg")
-                        .resize(1200, 280)
-                        .into(imageView);
-            }
-        });
 
-        uiHandler = new Handler(Looper.getMainLooper());
-        uiHandler.post(new Runnable() {
-            @Override
-            public void run() {
-                Picasso.with(getApplicationContext())
-                        .load("http://www.veryicon.com/icon/ico/System/Android%201/Measurement%20Units%20weight.ico")
-                                //.resize(300, 300)
-                        .into(icone_height);
-            }
-        });
-
+        // Listen events to clear the content when touched
         tvheight.setOnTouchListener(new View.OnTouchListener() {
             @Override
             public boolean onTouch(View v, MotionEvent event) {
-                tvheight.setText("");
+                tvheight.getText().clear();
                 return false;
             }
         });
@@ -76,7 +44,7 @@ public class FormActivity extends Activity{
         tvweight.setOnTouchListener(new View.OnTouchListener() {
             @Override
             public boolean onTouch(View v, MotionEvent event) {
-                tvweight.setText("");
+                tvweight.getText().clear();
                 return false;
             }
         });
@@ -84,7 +52,7 @@ public class FormActivity extends Activity{
         tvname.setOnTouchListener(new View.OnTouchListener() {
             @Override
             public boolean onTouch(View v, MotionEvent event) {
-                tvname.setText("");
+                tvname.getText().clear();
                 return false;
             }
         });
@@ -92,11 +60,32 @@ public class FormActivity extends Activity{
         tvage.setOnTouchListener(new View.OnTouchListener() {
             @Override
             public boolean onTouch(View v, MotionEvent event) {
-                tvage.setText("");
+                tvage.getText().clear();
                 return false;
             }
         });
+
+
+        Button button_next = (Button) findViewById(R.id.button_next);
+        button_next.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                // Creates new intent
+                Intent i  = new Intent(getApplicationContext(), ObjectivesActivity.class);
+
+                //Starts new activity
+                startActivity(i);
+            }
+        });
+
+
+
     }
+
+
+
+
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {

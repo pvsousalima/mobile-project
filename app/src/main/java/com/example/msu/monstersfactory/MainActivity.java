@@ -41,7 +41,7 @@ public class MainActivity extends Activity {
         } else {
 
 
-            setContentView(R.layout.form_activity);
+            setContentView(R.layout.activity_forms);
 
             // first time task
             Toast t = Toast.makeText(getApplicationContext(), "Second time", Toast.LENGTH_LONG);
