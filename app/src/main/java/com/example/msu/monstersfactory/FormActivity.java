@@ -28,9 +28,6 @@ public class FormActivity extends Activity{
         final EditText tvweight = (EditText) findViewById(R.id.tvweight);
         final EditText tvage = (EditText) findViewById(R.id.tvage);
 
-
-
-
         // Listen events to clear the content when touched
         tvheight.setOnTouchListener(new View.OnTouchListener() {
             @Override
@@ -65,7 +62,6 @@ public class FormActivity extends Activity{
             }
         });
 
-
         Button button_next = (Button) findViewById(R.id.button_next);
         button_next.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -78,14 +74,7 @@ public class FormActivity extends Activity{
                 startActivity(i);
             }
         });
-
-
-
     }
-
-
-
-
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {

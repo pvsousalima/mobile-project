@@ -28,9 +28,6 @@ public class MainActivity extends Activity {
     // Imagem de inicio
     ImageView imageView;
 
-
-    Button button_new;
-
     // SQLITE
     private SQLiteDatabase db;
 
@@ -49,7 +46,9 @@ public class MainActivity extends Activity {
             return true;
         } else {
 
-            setContentView(R.layout.activity_forms);
+            DBService dbService = new DBService(this);
+            db = dbService.getDatabase();
+
 
             // first time task
             Toast t = Toast.makeText(getApplicationContext(), "Second time", Toast.LENGTH_LONG);
@@ -97,21 +96,20 @@ public class MainActivity extends Activity {
             }
         });
 
-        // Button for the new monster
-         button_new = (Button) findViewById(R.id.button_new);
 
-        // Events for new monster calling the form activity
-        button_new.setOnClickListener(new View.OnClickListener() {
+        Button new_button = (Button) findViewById(R.id.button_new);
+
+        new_button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
-                // Creates new intent
+                // Goest to the forms screen
                 Intent i  = new Intent(getApplicationContext(), FormActivity.class);
-
-                //Starts new activity
                 startActivity(i);
             }
         });
+
+
     }
 
 
