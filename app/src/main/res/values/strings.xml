@@ -6,5 +6,6 @@
     <string name="name">name</string>
     <string name="about_me">About me</string>
     <string name="title_activity_objectives">Objectives</string>
+    <string name="title_activity_bmi">BMI</string>
 
 </resources>
