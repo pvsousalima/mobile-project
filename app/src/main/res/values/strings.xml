@@ -7,5 +7,6 @@
     <string name="about_me">About me</string>
     <string name="title_activity_objectives">Objectives</string>
     <string name="title_activity_bmi">BMI</string>
+    <string name="bmi">The body mass index (BMI), or Quetelet index, is a value derived from the mass (weight) and height of an individual.</string>
 
 </resources>
